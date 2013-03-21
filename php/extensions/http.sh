@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/yes ' ' | pecl install pecl_http
+/usr/bin/yes ' ' | pecl install pecl_http > /dev/null
