@@ -15,3 +15,4 @@ mkdir -p ~/.downloads/debs \
     && curl http://imaginux.com/repos/pool/renzo/msttcorefonts-offline_1.0-0ubuntu1_all.deb \
     -o ~/.downloads/msttcorefonts-offline_1.0-0ubuntu1_all.deb \
     && sudo dpkg -i ~/.downloads/msttcorefonts-offline_1.0-0ubuntu1_all.deb
+
