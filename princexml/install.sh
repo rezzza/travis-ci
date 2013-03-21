@@ -1,6 +1,6 @@
 #!/bin/sh
 ARCH=""
-if [ $(arch | grep -c x86_64) == 1 ] ; then
+if [ $(arch | grep -c x86_64) -eq 1 ] ; then
     ARCH="-amd64"
 fi
 
