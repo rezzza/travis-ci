@@ -2,7 +2,7 @@
 sudo apt-get install -q -y --force-yes apache2 libapache2-mod-fastcgi
 
 # modules
-sudo a2enmod rewrite actions vhost_alias
+sudo a2enmod rewrite actions vhost_alias auth_digest auth_basic
 sudo a2dismod ssl
 
 # sites
