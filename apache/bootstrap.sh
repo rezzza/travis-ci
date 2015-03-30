@@ -1,4 +1,5 @@
 #!/bin/sh
+sudo apt-get update -qq
 sudo apt-get install -q -y --force-yes apache2 libapache2-mod-fastcgi
 
 # modules
