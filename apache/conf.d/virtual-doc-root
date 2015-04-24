@@ -5,15 +5,15 @@
         Options FollowSymLinks
         AllowOverride All
         
-        <IfModule mod_authz_core.c>
+        #<IfModule mod_authz_core.c>
             # apache >= 2.4
             Require all granted
-        </IfModule>
+        #</IfModule>
 
-        <IfModule !mod_authz_core.c>
+        #<IfModule !mod_authz_core.c>
             # apache <= 2.2
             Order deny,allow
             Allow from all
-        </IfModule>
+        #</IfModule>
     </Directory>
 </IfModule>
