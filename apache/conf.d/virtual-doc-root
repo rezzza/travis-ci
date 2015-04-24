@@ -1,19 +1,51 @@
-<IfModule mod_vhost_alias.c>
-    UseCanonicalName Off
-    VirtualDocumentRoot /home/travis/vhosts/%0/web
-    <Directory /home/travis/vhosts>
-        Options FollowSymLinks
-     
-        #<IfModule !mod_authz_core.c>
+<IfModule mod_fastcgi.c>
+    Alias /php5.fastcgi /var/lib/apache2/fastcgi/php5.fastcgi
+    AddHandler php-script .php
+    FastCGIExternalServer /var/lib/apache2/fastcgi/php5.fastcgi -socket /tmp/php-fpm-apache2.sock -idle-timeout 610
+    Action php-script /php5.fastcgi virtual
+
+    # Forbid access to the fastcgi handler.
+    <Directory /var/lib/apache2/fastcgi>
+        <Files php5.fastcgi>
+            <IfModule !mod_authz_core.c>
+                # apache <= 2.2
+                Order deny,allow
+                Allow from all
+            </IfModule>
+            <IfModule mod_authz_core.c>
+                # apache >= 2.4
+                Require all granted
+            </IfModule>
+        </Files>
+    </Directory>
+
+    # FPM status page.
+    <Location /php-fpm-status>
+        SetHandler php-script
+        <IfModule !mod_authz_core.c>
             # apache <= 2.2
             Order deny,allow
-            Allow from all
-        #</IfModule>   
-        #<IfModule mod_authz_core.c>
+            Deny from all
+            Allow from 127.0.0.1 ::1
+        </IfModule>
+        <IfModule mod_authz_core.c>
             # apache >= 2.4
             Require all granted
-        #</IfModule>
-        
-        AllowOverride All
-    </Directory>
+        </IfModule>
+    </Location>
+
+    # FPM ping page.
+    <Location /php-fpm-ping>
+        SetHandler php-script
+        <IfModule !mod_authz_core.c>
+            # apache <= 2.2
+            Order deny,allow
+            Deny from all
+            Allow from 127.0.0.1 ::1
+        </IfModule>
+        <IfModule mod_authz_core.c>
+            # apache >= 2.4
+            Require all granted
+        </IfModule>
+    </Location>
 </IfModule>
