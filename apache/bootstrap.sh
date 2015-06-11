@@ -13,5 +13,4 @@ sudo a2dissite default
 mkdir -p ~/vhosts
 sudo echo "Listen $1" | sudo tee /etc/apache2/ports.conf
 sudo cp ~/.rezzza.travis-ci/apache/conf.d/* /etc/apache2/conf.d/
-
-sudo apache2ctl restart
+sudo service apache2 restart
