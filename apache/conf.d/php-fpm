@@ -7,11 +7,8 @@
     # Forbid access to the fastcgi handler.
     <Directory /var/lib/apache2/fastcgi>
         <Files php5.fastcgi>
-            <IfModule !mod_authz_core.c>
-                # apache <= 2.2
-                Order deny,allow
-                Allow from all
-            </IfModule>
+            Order deny,allow
+            Allow from all
             <IfModule mod_authz_core.c>
                 # apache >= 2.4
                 Require all granted
@@ -22,12 +19,9 @@
     # FPM status page.
     <Location /php-fpm-status>
         SetHandler php-script
-        <IfModule !mod_authz_core.c>
-            # apache <= 2.2
-            Order deny,allow
-            Deny from all
-            Allow from 127.0.0.1 ::1
-        </IfModule>
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1 ::1
         <IfModule mod_authz_core.c>
             # apache >= 2.4
             Require all granted
@@ -37,12 +31,9 @@
     # FPM ping page.
     <Location /php-fpm-ping>
         SetHandler php-script
-        <IfModule !mod_authz_core.c>
-            # apache <= 2.2
-            Order deny,allow
-            Deny from all
-            Allow from 127.0.0.1 ::1
-        </IfModule>
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1 ::1
         <IfModule mod_authz_core.c>
             # apache >= 2.4
             Require all granted
