@@ -15,7 +15,7 @@ fi
 printf "extension=apcu.so\n" | cat - ~/.rezzza.travis-ci/php/conf.d/apcu.ini > ~/.rezzza.travis-ci/php/conf.d/apc.ini
 
 if [ $(phpenv version-name) = "7.0" ]; then 
-  printf "nextension=apc.so\n" >> ~/.rezzza.travis-ci/php/conf.d/apc.ini 
+  printf "extension=apc.so\n" >> ~/.rezzza.travis-ci/php/conf.d/apc.ini 
 fi
 
 phpenv config-add ~/.rezzza.travis-ci/php/conf.d/apc.ini
