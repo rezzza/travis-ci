@@ -9,7 +9,7 @@ if [ $(phpenv version-name) = "7.0" ]; then
     && popd \
     && pickle install --defaults ~/apcu-bc ; 
 else
-    pickle install --defaults apcu-4.0.10
+  pickle install --defaults apcu-4.0.10
 fi
     
 printf "extension=apcu.so\n" | cat - ~/.rezzza.travis-ci/php/conf.d/apcu.ini > ~/.rezzza.travis-ci/php/conf.d/apc.ini
