@@ -5,12 +5,12 @@
         Options FollowSymLinks
         Order deny,allow
         Allow from all
-        
+
         <IfModule mod_authz_core.c>
             # apache >= 2.4
             Require all granted
         </IfModule>
-        
+
         AllowOverride All
     </Directory>
 </IfModule>
