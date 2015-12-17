@@ -5,7 +5,7 @@ bootstrap_base()
 {
     phpenv config-add ~/.rezzza.travis-ci/php/conf.d/rezzza.ini \
         && rm -rf ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini \
-        && [[ $(php -r "echo extension_loaded('Zend OPcache');") != "1" ]] && phpenv config-add ~/.rezzza.travis-ci/php/conf.d/opcode.ini
+        && [[ $(php -r "echo extension_loaded('Zend OPcache') ? 1 : 0;") != "1" ]] && phpenv config-add ~/.rezzza.travis-ci/php/conf.d/opcode.ini
 
     # for github anonymous request limit issue
     if [ -d .composer ] ; then
@@ -35,7 +35,7 @@ bootstrap_pickle()
 
 bootstrap_apcu()
 {
-    if [ $(php -r "echo extension_loaded('apcu');") = "1" ] ; then
+    if [ $(php -r "echo extension_loaded('apcu') ? 1 : 0;") = "1" ] ; then
         return;
     fi
     
@@ -65,7 +65,7 @@ bootstrap_apcu()
 
 bootstrap_redis()
 {
-    if [ $(php -r "echo extension_loaded('redis');") = "1" ] ; then
+    if [ $(php -r "echo extension_loaded('redis') ? 1 : 0;") = "1" ] ; then
         return;
     fi
     
