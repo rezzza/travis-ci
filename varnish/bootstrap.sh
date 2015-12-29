@@ -4,5 +4,5 @@ curl https://repo.varnish-cache.org/GPG-key.txt | sudo apt-key add - \
     && sudo apt-get update -qq \
     && sudo apt-get install -q -y --force-yes varnish \
     && sudo cp ~/.rezzza.travis-ci/varnish/libvmod_curl.so /usr/lib/varnish/vmods/libvmod_curl.so \
-    && sudo service varnishd stop \
+    && sudo service varnish stop \
     && sudo varnishd -a 127.0.0.1:$1 -s file,/tmp,500M -f $2 -p vcl_dir=$3
