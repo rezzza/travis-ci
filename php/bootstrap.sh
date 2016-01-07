@@ -4,7 +4,7 @@ set -e
 bootstrap_base()
 {
     phpenv config-add ~/.rezzza.travis-ci/php/conf.d/rezzza.ini \
-        && rm -rf ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini \
+        && phpenv config-rm xdebug.ini \
         && [[ $(php -r "echo extension_loaded('Zend OPcache') ? 1 : 0;") != "1" ]] && phpenv config-add ~/.rezzza.travis-ci/php/conf.d/opcode.ini
 
     # for github anonymous request limit issue
