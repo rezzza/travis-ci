@@ -4,7 +4,7 @@ set -e
 bootstrap_base()
 {
     phpenv config-add ~/.rezzza.travis-ci/php/conf.d/rezzza.ini \
-        && rm -rf ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini \
+        && phpenv config-rm xdebug.ini \
         && [[ $(php -r "echo extension_loaded('Zend OPcache') ? 1 : 0;") != "1" ]] && phpenv config-add ~/.rezzza.travis-ci/php/conf.d/opcode.ini
 
     # for github anonymous request limit issue
@@ -38,7 +38,7 @@ bootstrap_apcu()
     if [ $(php -r "echo extension_loaded('apcu') ? 1 : 0;") = "1" ] ; then
         return;
     fi
-    
+
     # manage apcu install subtilities between php >= 7.0 and others
     if [ $(phpenv version-name) = "7.0" ]; then
       pickle install --defaults apcu-5.1.2 \
@@ -68,7 +68,7 @@ bootstrap_redis()
     if [ $(php -r "echo extension_loaded('redis') ? 1 : 0;") = "1" ] ; then
         return;
     fi
-    
+
     if [ $(phpenv version-name) = "7.0" ]; then
         mkdir -p ~/.rezzza/php/extensions \
             && pushd . \
@@ -102,6 +102,7 @@ bootsrap.sh [options]
 options: any of the following, space separated:
     - apcu
     - fpm
+    - redis
 EOF
 }
 
