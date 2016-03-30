@@ -7,8 +7,8 @@ apt-cache madison docker-engine \
     && curl -sL https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose \
     && chmod +x docker-compose \
     && sudo mv docker-compose /usr/local/bin \
-    && sudo mkdir -p /var/lib/docker-images \
-    && printf "DOCKER_OPTS=\"-g /var/lib/docker-images\"\n" | sudo tee -a /etc/default/docker \
+    && mkdir -p ~/docker-images \
+    && printf "DOCKER_OPTS=\"-g %s/docker-images\"\n" $HOME | sudo tee -a /etc/default/docker \
     && sudo service docker restart \
     && docker version \
     && docker-compose version \

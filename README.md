@@ -9,7 +9,7 @@ env:
         - DOCKER_VERSION=1.10.3-0~trusty
         - DOCKER_COMPOSE_VERSION=1.6.2
 ```
-- Configure images store path to `/var/lib/docker-images` hence you can use travis cache to seedup you builds
+- Configure images store path to `~/docker-images` hence you can use travis cache to seedup you builds
 
 
 ## .travis.yml example
@@ -20,7 +20,7 @@ dist: trusty
 
 cache:
     directories:
-        - /var/lib/docker-images
+        - ~/docker-images
         
 env:
     global:
