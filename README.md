@@ -18,9 +18,11 @@ env:
 sudo: required
 dist: trusty
 
-cache:
-    directories:
-        - ~/docker-images
+# Warning: travis casher is aborting ATM
+# (too big images dir & verbose tgz mode not a good idea from travis)
+#cache:
+#   directories:
+#       - ~/docker-images
         
 env:
     global:
