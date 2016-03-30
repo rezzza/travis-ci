@@ -1,16 +1,6 @@
 #!/bin/sh
 set -e
 
-# Do not forgot to add the DOCKER_VERSION and DOCKER_COMPOSE_VERSION env
-# variables in the .travis.yml:
-#
-# ```
-# env:
-#     global:
-#         - DOCKER_VERSION=1.10.3-0~trusty
-#         - DOCKER_COMPOSE_VERSION=1.6.2
-# ```
-
 apt-cache madison docker-engine \
     && sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION} \
     && sudo rm /usr/local/bin/docker-compose \
