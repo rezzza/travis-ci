@@ -8,7 +8,7 @@ apt-cache madison docker-engine \
     && chmod +x docker-compose \
     && sudo mv docker-compose /usr/local/bin \
     && mkdir -p ~/docker-images \
-    && printf "DOCKER_OPTS=\"-g %s/docker-images\"\n" $HOME | sudo tee -a /etc/default/docker \
+    echo "DOCKER_OPTS=\"-g $HOME/docker-images $@\"\n" | sudo tee -a /etc/default/docker \
     && sudo service docker restart \
     && docker version \
     && docker-compose version \
