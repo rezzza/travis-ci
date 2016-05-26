@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+set -e
 
 apt-cache madison docker-engine \
     && sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION} \
@@ -8,7 +8,7 @@ apt-cache madison docker-engine \
     && chmod +x docker-compose \
     && sudo mv docker-compose /usr/local/bin \
     && mkdir -p ~/docker-images \
-    echo "DOCKER_OPTS=\"-g $HOME/docker-images $@\"\n" | sudo tee -a /etc/default/docker \
+    && echo "DOCKER_OPTS=\"-g $HOME/docker-images $@\"\n" | sudo tee -a /etc/default/docker \
     && sudo service docker restart \
     && docker version \
     && docker-compose version \
