@@ -12,7 +12,7 @@ apt-cache madison docker-ce
 sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-ce=${DOCKER_VERSION}
 mkdir -p ~/docker-images
 echo "DOCKER_OPTS=\"-g $HOME/docker-images\"\n" | sudo tee -a /etc/default/docker
-cat /etc/default/docker
+sudo cat /etc/default/docker
 sudo service docker restart
 
 # docker-compose
